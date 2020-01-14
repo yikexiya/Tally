@@ -1,7 +1,12 @@
 package com.yikexiya.tally.ui.home
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.fragment.app.Fragment
 import com.yikexiya.tally.R
 import com.yikexiya.tally.databinding.FragmentHomeBinding
@@ -16,6 +21,10 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
+        binding.refreshLayout.setOnRefreshListener { refreshLayout ->
+//            refreshLayout.finishRefresh(false)
+        }
+        binding.refreshLayout.setOnLoadMoreListener { refreshLayout ->  }
         return binding.root
     }
 

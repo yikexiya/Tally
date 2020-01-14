@@ -11,6 +11,9 @@
         <item name="android:windowNoTitle">true</item>
 
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
+
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
 </resources>

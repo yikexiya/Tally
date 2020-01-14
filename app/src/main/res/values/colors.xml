@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="textColorPrimary">#494646</color>
+    <color name="colorPrimaryDark">#00574b</color>
+    <color name="colorAccent">#d81b60</color>
+    <color name="textColorPrimary">#131111</color>
+    <color name="textColorSecondary">#123456</color>
+    <color name="textColorThird">#474040</color>
     <color name="colorAction">#737373</color>
+    <color name="white">#ffffff</color>
+    <color name="grey_icon">#afafaf</color>
+    <color name="transparent">#00000000</color>
+    <!-- 点击涟漪背景色 -->
+    <color name="color_ripple">#1f000000</color>
 </resources>
