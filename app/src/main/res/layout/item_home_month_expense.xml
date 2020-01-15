@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="com.yikexiya.tally.ui.home.HomeViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -9,6 +14,7 @@
         android:layout_marginEnd="@dimen/padding_normal"
         android:layout_marginTop="@dimen/recycler_item_padding"
         android:background="@drawable/bg_common_card_white"
+        android:onClick="@{(v) -> vm.onMonthExpenseClick(v)"
         android:padding="@dimen/padding_normal">
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/month_expense_label"
@@ -27,6 +33,7 @@
             app:layout_constraintTop_toBottomOf="@id/month_expense_label"
             android:paddingTop="@dimen/padding_small"
             android:paddingBottom="@dimen/padding_small"
+            android:text="@{vm.monthExpense}"
             android:textSize="32sp"
             android:textColor="@color/textColorPrimary"
             android:textStyle="bold"
@@ -41,6 +48,8 @@
             android:paddingEnd="15dp"
             app:srcCompat="@drawable/ic_eye_selector"
             android:background="@drawable/bg_clickable_view"
+            app:selected="@{vm.moneyVisible}"
+            android:onClick="@{() -> vm.onEyeClick()}"
             tools:src="@drawable/ic_eye_open"/>
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/month_earning_label"
@@ -59,6 +68,7 @@
             app:layout_constraintStart_toEndOf="@id/month_earning_label"
             app:layout_constraintBottom_toBottomOf="@id/month_earning_label"
             android:layout_marginStart="@dimen/padding_small"
+            android:text="@{vm.monthEarning}"
             android:textColor="@color/textColorPrimary"
             android:textStyle="bold"
             tools:text="￥123.45"/>
@@ -68,6 +78,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/month_earning_label"
+            android:text="@{vm.monthBudget}"
             android:textColor="@color/textColorPrimary"
             android:textStyle="bold"
             tools:text="￥123.45"/>
@@ -104,6 +115,5 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_size_small"
             android:text="@string/look_chart_analysis"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,4 +6,5 @@
     <string name="current_month_earning">本月收入</string>
     <string name="remain_budget">剩余预算</string>
     <string name="look_chart_analysis">查看图表分析</string>
+    <string name="today_expense_earning">今日支出 %s&#160;&#160;&#160;收入 %s</string>
 </resources>
