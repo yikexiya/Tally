@@ -5,13 +5,15 @@
     <data>
         <variable
             name="model"
-            type="com.yikexiya.tally.ui.home.model.Record" />
+            type="com.yikexiya.tally.ui.home.model.RecordDisplayModel" />
+        <import type="android.view.View"/>
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding_normal"
         android:layout_marginEnd="@dimen/padding_normal"
+        android:layout_marginTop="@dimen/recycler_item_padding"
         android:foreground="?attr/selectableItemBackground"
         android:minHeight="66dp"
         app:cardCornerRadius="@dimen/radius_common"
@@ -30,11 +32,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:selected="@{true}"
+                android:background="@{model.expense ? @drawable/bg_category_expense : @drawable/bg_category_earning}"
                 android:padding="@dimen/padding_small">
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:tint="@color/white"
+                    app:itemIcon="@{model.iconRes}"
                     tools:src="@drawable/ic_cart"/>
             </FrameLayout>
             <androidx.appcompat.widget.AppCompatTextView
@@ -46,6 +52,7 @@
                 app:layout_constraintBottom_toTopOf="@id/remark"
                 android:layout_marginStart="@dimen/padding_small"
                 app:layout_constraintVertical_chainStyle="packed"
+                android:text="@{model.typeName}"
                 android:textColor="@color/textColorPrimary"
                 tools:text="购物"/>
             <androidx.appcompat.widget.AppCompatTextView
@@ -58,6 +65,7 @@
                 android:textSize="@dimen/text_size_small"
                 android:textColor="@color/textColorSecondary"
                 android:text="@{model.remark}"
+                android:visibility="@{model.remark == `` ? View.GONE : View.VISIBLE}"
                 android:maxLines="1"
                 android:ellipsize="end"
                 tools:text="欧尚超市购物"/>
@@ -68,6 +76,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/time"
+                android:text="@{model.money}"
                 android:textSize="@dimen/text_size_big"
                 android:textColor="@color/textColorPrimary"
                 android:textStyle="bold"
@@ -81,6 +90,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textColor="@color/textColorThird"
                 android:textSize="@dimen/text_size_small"
+                android:text="@{model.time}"
                 tools:text="今天 12:23"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -23,11 +23,8 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-        binding.refreshLayout.setOnRefreshListener { refreshLayout ->
-            refreshLayout.finishRefresh(1000)
-        }
-        binding.refreshLayout.setOnLoadMoreListener { refreshLayout ->
-            refreshLayout.finishLoadMore(1000)
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.refresh()
         }
         adapter = HomeAdapter(requireContext(), viewModel)
         binding.tallyList.adapter = adapter
@@ -38,6 +35,10 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel.recordList.observe(viewLifecycleOwner) {
             adapter.resetData(it)
+        }
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (!it)
+                binding.refreshLayout.finishRefresh()
         }
     }
 
