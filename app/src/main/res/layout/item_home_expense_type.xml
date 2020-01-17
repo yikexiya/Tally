@@ -6,6 +6,9 @@
         <variable
             name="model"
             type="com.yikexiya.tally.ui.home.model.RecordDisplayModel" />
+        <variable
+            name="vm"
+            type="com.yikexiya.tally.ui.home.HomeViewModel" />
         <import type="android.view.View"/>
     </data>
     <androidx.cardview.widget.CardView
@@ -19,6 +22,7 @@
         app:cardCornerRadius="@dimen/radius_common"
         android:paddingTop="@dimen/padding_small"
         android:paddingBottom="@dimen/padding_small"
+        android:onClick="@{(v) -> vm.onExpenseTypeItemClick(v)}"
         app:cardElevation="0dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

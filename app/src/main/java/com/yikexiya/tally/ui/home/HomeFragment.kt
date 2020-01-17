@@ -22,6 +22,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.vm = viewModel
         setHasOptionsMenu(true)
         binding.refreshLayout.setOnRefreshListener {
             viewModel.refresh()

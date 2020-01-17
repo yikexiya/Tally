@@ -107,6 +107,7 @@ class HomeAdapter(context: Context, private val viewModel: HomeViewModel) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(record: RecordDisplayModel) {
             binding.model = record
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }

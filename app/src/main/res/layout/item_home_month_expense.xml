@@ -13,8 +13,9 @@
         android:layout_marginStart="@dimen/padding_normal"
         android:layout_marginEnd="@dimen/padding_normal"
         android:layout_marginTop="@dimen/recycler_item_padding"
-        android:background="@drawable/bg_common_card_white"
-        android:onClick="@{(v) -> vm.onMonthExpenseClick(v)"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@drawable/bg_common_card_white_normal"
+        android:onClick="@{(v) -> vm.onMonthExpenseClick(v)}"
         android:padding="@dimen/padding_normal">
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/month_expense_label"
@@ -78,6 +79,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/month_earning_label"
+            android:onClick="@{(v) -> vm.onRemainBudgetClick(v)"
             android:text="@{vm.monthBudget}"
             android:textColor="@color/textColorPrimary"
             android:textStyle="bold"

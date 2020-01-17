@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
-        android:id="@+id/refresh_layout"
+    <data>
+        <variable
+            name="vm"
+            type="com.yikexiya.tally.ui.home.HomeViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.scwang.smart.refresh.header.ClassicsHeader
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tally_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:overScrollMode="never"/>
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+            android:layout_height="match_parent">
+            <com.scwang.smart.refresh.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tally_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:overScrollMode="never"/>
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/padding_normal"
+            android:layout_marginBottom="@dimen/padding_normal"
+            android:src="@drawable/ic_menu"
+            android:tint="@color/white"
+            android:onClick="@{(v) -> vm.onExpenseTypeItemClick(v)}"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/list"
+            app:layout_constraintEnd_toStartOf="@id/list"
+            android:layout_marginEnd="@dimen/padding_normal"
+            android:src="@drawable/ic_add"
+            android:tint="@color/white"
+            android:onClick="@{(v) -> vm.onExpenseTypeItemClick(v)}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

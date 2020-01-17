@@ -8,4 +8,5 @@
     <string name="look_chart_analysis">查看图表分析</string>
     <string name="today_expense_earning">今日支出 %s&#160;&#160;&#160;收入 %s</string>
     <string name="shopping">购物</string>
+    <string name="tap_to_set_budget">点击设置预算</string>
 </resources>

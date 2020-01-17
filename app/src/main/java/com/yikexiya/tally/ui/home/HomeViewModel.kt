@@ -15,7 +15,6 @@ import com.yikexiya.tally.ui.home.model.RecordDisplayModel
 import com.yikexiya.tally.util.toast
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.exp
 
 class HomeViewModel : AndroidViewModel(TallyApplication.instance()) {
     private var budget: Float
@@ -35,12 +34,12 @@ class HomeViewModel : AndroidViewModel(TallyApplication.instance()) {
     private val mockType = RecordType(true, R.drawable.ic_cart, "购物")
 
     private val originData = listOf(
-        Record(mockType, Random().nextFloat()*100, System.currentTimeMillis()),
-        Record(mockType, Random().nextFloat()*100, System.currentTimeMillis()),
-        Record(mockType, Random().nextFloat()*100, System.currentTimeMillis()),
-        Record(mockType, Random().nextFloat()*100, System.currentTimeMillis()),
-        Record(mockType, Random().nextFloat()*100, System.currentTimeMillis()),
-        Record(mockType, Random().nextFloat()*100, System.currentTimeMillis())
+        Record(mockType, Random().nextFloat() * 100, Date(120, 0, 3).time),
+        Record(mockType, Random().nextFloat() * 100, Date(120, 3, 24).time),
+        Record(mockType, Random().nextFloat() * 100, Date(120, 0, 13).time),
+        Record(mockType, Random().nextFloat() * 100, Date(120, 6, 21).time),
+        Record(mockType, Random().nextFloat() * 100, Date(120, 0, 22).time),
+        Record(mockType, Random().nextFloat() * 100, Date(120, 3, 11).time)
     )
 
     init {
@@ -54,28 +53,66 @@ class HomeViewModel : AndroidViewModel(TallyApplication.instance()) {
 //        view.findNavController()
     }
 
+    fun onExpenseTypeItemClick(view: View) {
+        toast("跳转界面2")
+    }
+
+    fun onRemainBudgetClick(view: View) {}
+
+    fun setAppBudget(budget: Float) {}
+
     fun onEyeClick() {}
-    fun showOrHideMoney(show: Boolean) {}
+    fun showOrHideMoney(show: Boolean) {
+    }
     fun refresh() {
         _loading.value = true
-        var expense = 0f
-        var earning = 0f
-        val data = originData.map {
-            val qian = it.money + Random().nextInt(20)
-            if (it.type.isExpense) {
-                expense += qian
+        val today = Calendar.getInstance()
+        var mExpense = 0f
+        var mEarning = 0f
+        var dExpense = 0f
+        var dEarning = 0f
+        val recordDisplayModelList = mutableListOf<RecordDisplayModel>()
+        for (originDatum in originData) {
+            // 统计当月的收支
+            val qian = originDatum.money + Random().nextInt(20)
+            if (originDatum.type.isExpense) {
+                mExpense += qian
             } else {
-                earning += qian
+                mEarning += qian
             }
-            val money = "￥${String.format("%.2f", qian)}"
-            val time = formatTime(it.timestamp)
-            RecordDisplayModel(it.type.isExpense, it.type.icon, it.type.name, money, time, it.id, it.remark)
+            // 计算当天的收支
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = originDatum.timestamp
+            if (today.get(Calendar.YEAR) == calendar.get(Calendar.YEAR) && today.get(Calendar.MONTH) == calendar.get(Calendar.MONTH)) {
+                if (originDatum.type.isExpense) {
+                    dExpense += qian
+                } else {
+                    dEarning += qian
+                }
+                val money = "￥${String.format("%.2f", qian)}"
+                val time = formatTime(originDatum.timestamp)
+                val record = RecordDisplayModel(
+                    originDatum.type.isExpense,
+                    originDatum.type.icon,
+                    originDatum.type.name,
+                    money,
+                    time,
+                    originDatum.id,
+                    originDatum.remark
+                )
+                recordDisplayModelList.add(record)
+            }
         }
-        todayExpense.set("￥${String.format("%.2f", expense)}")
-        todayEarning.set("￥${String.format("%.2f", earning)}")
-        _recordList.value = data
+        monthExpense.set("￥${String.format("%.2f", mExpense)}")
+        monthEarning.set("￥${String.format("%.2f", mEarning)}")
+        val mBudget = if (budget <= 0f) getApplication<TallyApplication>().getString(R.string.tap_to_set_budget) else "￥${String.format("%.2f", budget - mExpense)}"
+        monthBudget.set(mBudget)
+        todayExpense.set("￥${String.format("%.2f", dExpense)}")
+        todayEarning.set("￥${String.format("%.2f", dEarning)}")
+        _recordList.value = recordDisplayModelList
         _loading.value = false
     }
+
     private fun formatTime(timestamp: Long): String {
         val date = Date(timestamp)
         val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
