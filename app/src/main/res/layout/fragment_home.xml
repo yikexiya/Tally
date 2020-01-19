@@ -33,7 +33,7 @@
             android:layout_marginBottom="@dimen/padding_normal"
             android:src="@drawable/ic_menu"
             android:tint="@color/white"
-            android:onClick="@{(v) -> vm.onExpenseTypeItemClick(v)}"/>
+            android:onClick="@{(v) -> vm.onListClick(v)}"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,6 +42,6 @@
             android:layout_marginEnd="@dimen/padding_normal"
             android:src="@drawable/ic_add"
             android:tint="@color/white"
-            android:onClick="@{(v) -> vm.onExpenseTypeItemClick(v)}"/>
+            android:onClick="@{(v) -> vm.onAddClick(v)}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

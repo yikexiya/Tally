@@ -7,8 +7,11 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.yikexiya.tally.R
 import com.yikexiya.tally.app.TallyApplication
+import com.yikexiya.tally.component.SetBudgetDialog
 import com.yikexiya.tally.data.RecordType
 import com.yikexiya.tally.ui.home.model.Record
 import com.yikexiya.tally.ui.home.model.RecordDisplayModel
@@ -57,7 +60,29 @@ class HomeViewModel : AndroidViewModel(TallyApplication.instance()) {
         toast("跳转界面2")
     }
 
-    fun onRemainBudgetClick(view: View) {}
+    // 点击添加一笔账单时触发
+    fun onAddClick(view: View) {
+        val directions = HomeFragmentDirections.actionHomeFragmentToSaveRecordFragment()
+        view.findNavController().navigate(directions)
+    }
+
+    // 点击底部菜单时弹出底部对话框
+    fun onListClick(view: View) {
+//        val dialog = BottomSheetDialog(view.context)
+    }
+
+    // 点击剩余预算时底部弹出对话框
+    fun onRemainBudgetClick(view: View) {
+        SetBudgetDialog(view.context) {
+            budget = it
+            val money = monthExpense.get()?.trim('￥')?.toFloatOrNull() ?: 0f
+            monthBudget.set("￥${String.format("%.2f", budget - money)}")
+            PreferenceManager.getDefaultSharedPreferences(getApplication())
+                .edit()
+                .putFloat("budget", it)
+                .apply()
+        }.show()
+    }
 
     fun setAppBudget(budget: Float) {}
 

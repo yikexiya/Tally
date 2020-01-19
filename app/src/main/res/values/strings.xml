@@ -9,4 +9,10 @@
     <string name="today_expense_earning">今日支出 %s&#160;&#160;&#160;收入 %s</string>
     <string name="shopping">购物</string>
     <string name="tap_to_set_budget">点击设置预算</string>
+    <string name="set_budget">设置预算</string>
+    <string name="please_input_month_budget">请输入本月预算</string>
+    <string name="sure">确定</string>
+    <string name="please_input_positive_int">请输入大于0的整数</string>
+    <string name="expense">支出</string>
+    <string name="earning">收入</string>
 </resources>

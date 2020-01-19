@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/month_earning_label"
-            android:onClick="@{(v) -> vm.onRemainBudgetClick(v)"
+            android:onClick="@{(v) -> vm.onRemainBudgetClick(v)}"
             android:text="@{vm.monthBudget}"
             android:textColor="@color/textColorPrimary"
             android:textStyle="bold"
