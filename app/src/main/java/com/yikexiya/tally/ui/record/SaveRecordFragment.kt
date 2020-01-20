@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.yikexiya.tally.R
+import com.yikexiya.tally.data.RecordType
 import com.yikexiya.tally.databinding.FragmentSaveRecordBinding
-import com.yikexiya.tally.ui.record.model.RecordTypeDisplayModel
 
 class SaveRecordFragment : Fragment() {
     private lateinit var binding: FragmentSaveRecordBinding
@@ -23,30 +24,35 @@ class SaveRecordFragment : Fragment() {
         binding = FragmentSaveRecordBinding.inflate(inflater, container, false)
         tabLayout = binding.tab
         viewPage = binding.viewPager
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.expense))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.earning))
+        viewPage.adapter = RecordViewPageAdapter(expenseList, earningList)
+        TabLayoutMediator(tabLayout, viewPage) { tab, position ->
+            tab.text = if (position == 0)
+                getString(R.string.expense)
+            else
+                getString(R.string.earning)
+        }.attach()
         return binding.root
     }
     
     companion object {
         private val expenseList = listOf(
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "1"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "2"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "3"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "4"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "5"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "6"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "7"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "8")
+            RecordType(true, R.drawable.ic_cart, "购物", "1"),
+            RecordType(true, R.drawable.ic_cart, "购物", "2"),
+            RecordType(true, R.drawable.ic_cart, "购物", "3"),
+            RecordType(true, R.drawable.ic_cart, "购物", "4"),
+            RecordType(true, R.drawable.ic_cart, "购物", "5"),
+            RecordType(true, R.drawable.ic_cart, "购物", "6"),
+            RecordType(true, R.drawable.ic_cart, "购物", "7"),
+            RecordType(true, R.drawable.ic_cart, "购物", "8")
         )
         private val earningList = listOf(
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "1"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "2"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "3"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "4"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "5"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "6"),
-            RecordTypeDisplayModel(R.drawable.ic_cart, "购物", "7")
+            RecordType(true, R.drawable.ic_cart, "购物", "1"),
+            RecordType(true, R.drawable.ic_cart, "购物", "2"),
+            RecordType(true, R.drawable.ic_cart, "购物", "3"),
+            RecordType(true, R.drawable.ic_cart, "购物", "4"),
+            RecordType(true, R.drawable.ic_cart, "购物", "5"),
+            RecordType(true, R.drawable.ic_cart, "购物", "6"),
+            RecordType(true, R.drawable.ic_cart, "购物", "7")
         )
     }
 }
