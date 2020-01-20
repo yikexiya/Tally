@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.yikexiya.tally.data.RecordType" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/padding_small">
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:background="@{model.expense ? @drawable/bg_category_expense : @drawable/bg_category_earning}">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:itemIcon="@{model.icon}"
+                tools:src="@drawable/ic_cart"/>
+        </FrameLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.name}"
+            android:textColor="@color/textColorThird"
+            tools:text="购物"/>
     </LinearLayout>
 </layout>
