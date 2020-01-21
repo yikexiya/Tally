@@ -7,10 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yikexiya.tally.data.RecordType
 import com.yikexiya.tally.databinding.FragmentRecordTypeListBinding
 
-class RecordViewPageAdapter(private val expenseTypeList: List<RecordType>, private val earningTypeList: List<RecordType>) :
+class RecordViewPageAdapter(
+    viewModel: RecordViewModel,
+    private val expenseTypeList: List<RecordType>,
+    private val earningTypeList: List<RecordType>
+) :
     RecyclerView.Adapter<RecordViewPageAdapter.ViewPagerAdapter>() {
-    private val expenseAdapter: RecordTypeAdapter = RecordTypeAdapter()
-    private val earningAdapter: RecordTypeAdapter = RecordTypeAdapter()
+    private val expenseAdapter: RecordTypeAdapter = RecordTypeAdapter(viewModel)
+    private val earningAdapter: RecordTypeAdapter = RecordTypeAdapter(viewModel)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerAdapter {
         val binding = FragmentRecordTypeListBinding.inflate(
             LayoutInflater.from(parent.context),

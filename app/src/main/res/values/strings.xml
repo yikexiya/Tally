@@ -15,4 +15,6 @@
     <string name="please_input_positive_int">请输入大于0的整数</string>
     <string name="expense">支出</string>
     <string name="earning">收入</string>
+    <string name="write_one_tally">记一笔</string>
+    <string name="add_remark">添加备注</string>
 </resources>

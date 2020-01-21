@@ -1,18 +1,22 @@
 package com.yikexiya.tally.ui.home
 
 import android.preference.PreferenceManager
+import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.callbacks.onShow
+import com.afollestad.materialdialogs.customview.customView
 import com.yikexiya.tally.R
 import com.yikexiya.tally.app.TallyApplication
-import com.yikexiya.tally.component.SetBudgetDialog
 import com.yikexiya.tally.data.RecordType
+import com.yikexiya.tally.databinding.DialogSetMonthBudgetBinding
 import com.yikexiya.tally.ui.home.model.Record
 import com.yikexiya.tally.ui.home.model.RecordDisplayModel
 import com.yikexiya.tally.util.toast
@@ -71,17 +75,39 @@ class HomeViewModel : AndroidViewModel(TallyApplication.instance()) {
 //        val dialog = BottomSheetDialog(view.context)
     }
 
-    // 点击剩余预算时底部弹出对话框
+    // 点击剩余预算时弹出对话框
     fun onRemainBudgetClick(view: View) {
-        SetBudgetDialog(view.context) {
-            budget = it
-            val money = monthExpense.get()?.trim('￥')?.toFloatOrNull() ?: 0f
-            monthBudget.set("￥${String.format("%.2f", budget - money)}")
-            PreferenceManager.getDefaultSharedPreferences(getApplication())
-                .edit()
-                .putFloat("budget", it)
-                .apply()
-        }.show()
+        val context = view.context
+        MaterialDialog(context).show {
+            val binding = DialogSetMonthBudgetBinding.inflate(LayoutInflater.from(context), null, false)
+            binding.budget.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+                }
+            }
+            binding.close.setOnClickListener {
+                dismiss()
+            }
+            binding.sure.setOnClickListener {
+                val money = binding.budget.text.toString().toFloatOrNull()
+                if (money != null && money > 0) {
+                    budget = money
+                    val expenseMoney = monthExpense.get()?.trim('￥')?.toFloatOrNull() ?: 0f
+                    monthBudget.set("￥${String.format("%.2f", budget - expenseMoney)}")
+                    PreferenceManager.getDefaultSharedPreferences(getApplication())
+                        .edit()
+                        .putFloat("budget", budget)
+                        .apply()
+                    dismiss()
+                } else {
+                    toast(R.string.please_input_positive_int)
+                }
+            }
+            customView(view = binding.root)
+            onShow {
+                binding.budget.requestFocus()
+            }
+        }
     }
 
     fun setAppBudget(budget: Float) {}

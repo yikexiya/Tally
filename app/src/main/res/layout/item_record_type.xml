@@ -6,23 +6,29 @@
         <variable
             name="model"
             type="com.yikexiya.tally.data.RecordType" />
+        <variable
+            name="vm"
+            type="com.yikexiya.tally.ui.record.RecordViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:onClick="@{() -> vm.onItemClick(model)}"
         android:layout_margin="@dimen/padding_small">
         <FrameLayout
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="4dp"
+            app:selected="@{vm.selectedItem.id == model.id}"
             android:background="@{model.expense ? @drawable/bg_category_expense : @drawable/bg_category_earning}">
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 app:itemIcon="@{model.icon}"
+                android:tint="@{vm.selectedItem.id == model.id ? @color/white : @color/grey_icon}"
                 tools:src="@drawable/ic_cart"/>
         </FrameLayout>
         <androidx.appcompat.widget.AppCompatTextView

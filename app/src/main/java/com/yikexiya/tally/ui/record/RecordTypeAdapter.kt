@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yikexiya.tally.data.RecordType
 import com.yikexiya.tally.databinding.ItemRecordTypeBinding
 
-class RecordTypeAdapter : ListAdapter<RecordType, RecordTypeAdapter.ViewHolder>(RecordTypeDiff()) {
+class RecordTypeAdapter(private val viewModel: RecordViewModel) :
+    ListAdapter<RecordType, RecordTypeAdapter.ViewHolder>(RecordTypeDiff()) {
     inner class ViewHolder(private val binding: ItemRecordTypeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(recordType: RecordType) {
             binding.model = recordType
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }

@@ -23,25 +23,19 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:overScrollMode="never"/>
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/list"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="@dimen/padding_normal"
             android:layout_marginBottom="@dimen/padding_normal"
-            android:src="@drawable/ic_menu"
-            android:tint="@color/white"
-            android:onClick="@{(v) -> vm.onListClick(v)}"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/list"
-            app:layout_constraintEnd_toStartOf="@id/list"
-            android:layout_marginEnd="@dimen/padding_normal"
-            android:src="@drawable/ic_add"
-            android:tint="@color/white"
-            android:onClick="@{(v) -> vm.onAddClick(v)}"/>
+            android:text="@string/write_one_tally"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_very_big"
+            android:onClick="@{(v) -> vm.onAddClick(v)}"
+            android:backgroundTint="@color/colorAccent"
+            app:icon="@drawable/ic_add"
+            app:iconTint="@color/white"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
