@@ -7,12 +7,13 @@ import com.yikexiya.tally.data.RecordType
 import com.yikexiya.tally.databinding.ItemRecordtypeViewpageBinding
 
 class RecordTypeViewPageAdapter(
+    private val viewModel: RecordTypeViewModel,
     private val expenseTypeList: List<RecordType>,
     private val earningTypeList: List<RecordType>
 ) :
     RecyclerView.Adapter<RecordTypeViewPageAdapter.ViewPagerAdapter>() {
-    private val expenseAdapter: RecordtypeAdapter = RecordtypeAdapter()
-    private val earningAdapter: RecordtypeAdapter = RecordtypeAdapter()
+    private val expenseAdapter: RecordtypeAdapter = RecordtypeAdapter(viewModel)
+    private val earningAdapter: RecordtypeAdapter = RecordtypeAdapter(viewModel)
     inner class ViewPagerAdapter(private val binding: ItemRecordtypeViewpageBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(isExpense: Boolean) {

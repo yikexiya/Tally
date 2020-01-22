@@ -18,4 +18,5 @@
     <string name="write_one_tally">记一笔</string>
     <string name="add_remark">添加备注</string>
     <string name="config">设置</string>
+    <string name="add_category">添加分类</string>
 </resources>

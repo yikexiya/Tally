@@ -6,6 +6,9 @@
         <variable
             name="model"
             type="com.yikexiya.tally.data.RecordType" />
+        <variable
+            name="vm"
+            type="com.yikexiya.tally.ui.recordtype.RecordTypeViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
