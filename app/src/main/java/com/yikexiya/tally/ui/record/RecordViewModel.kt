@@ -9,7 +9,9 @@ import com.yikexiya.tally.app.TallyApplication
 import com.yikexiya.tally.data.RecordType
 
 class RecordViewModel : AndroidViewModel(TallyApplication.instance()) {
-    val selectedItem: ObservableField<RecordType> = ObservableField(RecordType(true, R.drawable.ic_cart, "购物", "1"))
+    val selectedItem: ObservableField<RecordType> = ObservableField()
+    // 保存支出或收入记录时的金额
+    val money = ObservableField<String>("￥0")
     fun onItemClick(recordType: RecordType) {
         selectedItem.set(recordType)
     }

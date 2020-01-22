@@ -66,7 +66,7 @@ class HomeViewModel : AndroidViewModel(TallyApplication.instance()) {
 
     // 点击添加一笔账单时触发
     fun onAddClick(view: View) {
-        val directions = HomeFragmentDirections.actionHomeFragmentToSaveRecordFragment()
+        val directions = HomeFragmentDirections.actionHomeFragmentToSaveRecordFragment(null)
         view.findNavController().navigate(directions)
     }
 

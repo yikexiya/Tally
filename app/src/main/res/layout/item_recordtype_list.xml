@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.yikexiya.tally.data.RecordType" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/padding_normal"
+        android:layout_marginEnd="@dimen/padding_normal"
+        android:layout_marginTop="@dimen/recycler_item_padding"
+        android:gravity="center_vertical">
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:background="@{model.expense ? @drawable/bg_category_earning_selected : @drawable/bg_category_expense_selected}">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:itemIcon="@{model.icon}"
+                android:tint="@color/white"
+                tools:src="@drawable/ic_cart"/>
+        </FrameLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/text_size_big"
+            android:text="@{model.name}"
+            tools:text="购物"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="@dimen/padding_small"
+            android:src="@drawable/ic_ellipsis"/>
+    </LinearLayout>
+</layout>

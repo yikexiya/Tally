@@ -35,7 +35,7 @@ class RecordTypeAdapter(private val viewModel: RecordViewModel) :
     }
 }
 
-private class RecordTypeDiff : DiffUtil.ItemCallback<RecordType>() {
+class RecordTypeDiff : DiffUtil.ItemCallback<RecordType>() {
     override fun areItemsTheSame(oldItem: RecordType, newItem: RecordType): Boolean {
         return oldItem.id == newItem.id
     }
@@ -45,5 +45,4 @@ private class RecordTypeDiff : DiffUtil.ItemCallback<RecordType>() {
                 && oldItem.icon == newItem.icon
                 && oldItem.name == newItem.name
     }
-
 }

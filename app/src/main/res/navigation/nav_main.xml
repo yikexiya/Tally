@@ -18,5 +18,21 @@
     <fragment
         android:id="@+id/save_record_fragment"
         android:name="com.yikexiya.tally.ui.record.SaveRecordFragment"
-        android:label="SaveRecordFragment" />
+        android:label="SaveRecordFragment" >
+        <argument
+            android:name="recordId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_save_record_fragment_to_record_type_fragment"
+            app:destination="@id/record_type_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/record_type_fragment"
+        android:name="com.yikexiya.tally.ui.recordtype.RecordTypeFragment"
+        android:label="RecordTypeFragment" />
 </navigation>

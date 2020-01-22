@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="vm"
+            type="com.yikexiya.tally.ui.record.RecordViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/padding_small"
+                android:background="@{vm.selectedItem.expense ? @drawable/bg_category_expense_selected : @drawable/bg_category_earning_selected}">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:tint="@color/white"
+                    app:itemIcon="@{vm.selectedItem.icon}"
+                    tools:src="@drawable/ic_cart"/>
+            </FrameLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textSize="@dimen/text_size_very_big"
+                android:textColor="@color/textColorPrimary"
+                android:textStyle="bold"
+                android:text="@{vm.selectedItem.name}"
+                tools:text="购物"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/padding_small"
+                android:gravity="end"
+                android:textSize="@dimen/text_size_very_big"
+                android:textColor="@color/textColorPrimary"
+                android:textStyle="bold"
+                android:text="@{vm.money}"
+                tools:text="￥123.45"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/type_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</layout>
