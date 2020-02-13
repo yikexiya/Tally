@@ -8,4 +8,6 @@
     <dimen name="text_size_big">16sp</dimen>
     <dimen name="text_size_very_big">18sp</dimen>
     <dimen name="line_height">48dp</dimen>
+    <dimen name="type_icon_normal">48dp</dimen>
+    <dimen name="type_icon_small">40dp</dimen>
 </resources>

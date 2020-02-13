@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.yikexiya.tally.ui.home.HomeViewModel
 import com.yikexiya.tally.ui.record.RecordViewModel
 import com.yikexiya.tally.ui.recordtype.RecordTypeViewModel
+import com.yikexiya.tally.ui.recordtype.save.SaveRecordTypeViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory : ViewModelProvider.NewInstanceFactory() {
@@ -17,6 +18,8 @@ class ViewModelFactory : ViewModelProvider.NewInstanceFactory() {
                     RecordViewModel()
                 isAssignableFrom(RecordTypeViewModel::class.java) ->
                     RecordTypeViewModel()
+                isAssignableFrom(SaveRecordTypeViewModel::class.java) ->
+                    SaveRecordTypeViewModel()
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T

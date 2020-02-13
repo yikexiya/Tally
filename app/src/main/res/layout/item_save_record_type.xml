@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="com.yikexiya.tally.ui.recordtype.save.SaveRecordTypeViewModel" />
+        <variable
+            name="iconRes"
+            type="Integer" />
+        <variable
+            name="isExpense"
+            type="Boolean" />
+    </data>
+    <FrameLayout
+        android:layout_width="@dimen/type_icon_small"
+        android:layout_height="@dimen/type_icon_small"
+        android:layout_margin="@dimen/padding_small"
+        android:background="@{isExpense ? @drawable/bg_category_expense : @drawable/bg_category_earning}">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:itemIcon="@{iconRes}"
+            tools:src="@drawable/ic_cart" />
+    </FrameLayout>
+</layout>

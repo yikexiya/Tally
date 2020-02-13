@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yikexiya.tally.R
 import com.yikexiya.tally.app.ViewModelFactory
@@ -30,6 +31,11 @@ class RecordTypeFragment : Fragment() {
             else
                 getString(R.string.earning)
         }.attach()
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                viewModel.isExpense = position == 0
+            }
+        })
         return binding.root
     }
 }

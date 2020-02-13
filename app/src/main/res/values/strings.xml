@@ -19,4 +19,6 @@
     <string name="add_remark">添加备注</string>
     <string name="config">设置</string>
     <string name="add_category">添加分类</string>
+    <string name="save">保存</string>
+    <string name="please_input_type_name">请输入分类名称</string>
 </resources>
